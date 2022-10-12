@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Jobs\TestJob;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
+Route::controller(ClientController::class)->group(function () {
+    Route::get("/", "index");
 });

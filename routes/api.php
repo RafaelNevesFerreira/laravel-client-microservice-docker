@@ -14,10 +14,13 @@ use App\Http\Controllers\ClientController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::controller(ClientController::class)->group(function () {
     // Route::middleware("api")->group(function () {
-        Route::get("/", "index");
-        Route::get("/get/{id}", "get");
-        Route::post("/create", "store");
+    Route::get("/", "index");
+    Route::get("/get/{id}", "get");
+    Route::post("/create", "store");
+    Route::get("/delete/{id}", "destroy")->name("delete");
+    Route::put("/update", "update")->name("update");
     // });
 });

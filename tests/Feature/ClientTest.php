@@ -13,7 +13,7 @@ class ClientTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_return_all_clients()
     {
         $response = $this->get('/');
 

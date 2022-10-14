@@ -53,16 +53,6 @@ class ClientController extends Controller
         $client = $this->get($request->id);
 
         UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
-        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
 
         return response()->json([
             "message" => "client updated successfuly",

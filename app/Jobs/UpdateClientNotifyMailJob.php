@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class TestJob implements ShouldQueue
+class UpdateClientNotifyMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -18,7 +18,7 @@ class TestJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public $data)
+    public function __construct(public $client)
     {
         //
     }

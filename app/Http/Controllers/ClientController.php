@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\DeleteClient;
-use App\Jobs\UpdateClientNotifyMail;
+use App\Jobs\UpdateClientNotifyMailJob;
 use App\Jobs\WelcomeNewClient;
 use App\Repository\Contracts\ClientRepositoryInterface;
 use Illuminate\Http\Request;
@@ -48,13 +48,15 @@ class ClientController extends Controller
 
     public function update(ClientRequest $request)
     {
-        $client = $this->client->update($request->all());
+        $this->client->update($request->all());
 
-        // UpdateClientNotifyMail::dispatch($client)->delay(now());
+        $client = $this->get($request->id);
 
-        return $client;
+        UpdateClientNotifyMailJob::dispatch($client->toArray())->delay(now());
+
         return response()->json([
             "message" => "client updated successfuly",
+            "data" => $client,
             "status" => 200
         ]);
     }

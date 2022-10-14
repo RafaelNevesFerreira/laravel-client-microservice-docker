@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeNewClient implements ShouldQueue
+class UpdateClientNotifyMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -18,8 +18,8 @@ class WelcomeNewClient implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public $email, public $name)
+    public function __construct(public $client)
     {
-
+        //
     }
 }

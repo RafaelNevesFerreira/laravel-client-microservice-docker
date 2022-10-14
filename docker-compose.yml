@@ -10,8 +10,6 @@ services:
         image: micro_01
         restart: always
         working_dir: /var/www
-        depends_on:
-            - redis
         volumes:
             - ./:/var/www
         networks:
@@ -54,11 +52,6 @@ services:
         command: "php artisan queue:work"
         volumes:
             - ./:/var/www
-        networks:
-            - micro_01
-
-    redis:
-        image: redis:latest
         networks:
             - micro_01
 

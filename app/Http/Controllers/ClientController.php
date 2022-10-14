@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\DeleteClient;
+use App\Jobs\UpdateClientNotifyMail;
 use App\Jobs\WelcomeNewClient;
 use App\Repository\Contracts\ClientRepositoryInterface;
 use Illuminate\Http\Request;
@@ -28,10 +29,9 @@ class ClientController extends Controller
     {
         $client = $this->client->store($request->all());
 
-        WelcomeNewClient::dispatch($client)->onQueue("micro_email");
+        WelcomeNewClient::dispatch($client->email, $client->name);
 
         return $client;
-
     }
 
     public function destroy($id)
@@ -48,8 +48,11 @@ class ClientController extends Controller
 
     public function update(ClientRequest $request)
     {
-        $this->client->update($request->all());
+        $client = $this->client->update($request->all());
 
+        // UpdateClientNotifyMail::dispatch($client)->delay(now());
+
+        return $client;
         return response()->json([
             "message" => "client updated successfuly",
             "status" => 200

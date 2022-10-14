@@ -13,6 +13,7 @@ class UpdateClientNotifyMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $tries = 20;
     /**
      * Create a new job instance.
      *
